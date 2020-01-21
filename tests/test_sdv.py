@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from sdv.sdv import DEFAULT_MODEL, DEFAULT_MODEL_KWARGS, SDV, NotFittedError
+from sdv.sdv import DEFAULT_MODEL, SDV, NotFittedError
 
 
 class TestSDV(TestCase):
@@ -39,8 +39,7 @@ class TestSDV(TestCase):
 
         # Asserts
         assert sdv.model == DEFAULT_MODEL
-        assert sdv.model_kwargs == DEFAULT_MODEL_KWARGS
-        assert sdv.model_kwargs is not DEFAULT_MODEL_KWARGS
+        assert sdv.model_kwargs == dict()
 
     def test____init__users_params(self):
         """Create default instance"""

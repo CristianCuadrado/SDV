@@ -1,5 +1,5 @@
 import numpy as np
-from copulas import multivariate
+from copulas import multivariate, univariate
 
 from sdv.models.base import SDVModel
 from sdv.models.utils import (
@@ -161,3 +161,7 @@ class GaussianCopula(SDVModel):
             param.setdefault('fitted', True)
 
         self.model = multivariate.GaussianMultivariate.from_dict(parameters)
+
+
+class GaussianCopulaTruncated(GaussianCopula):
+    DISTRIBUTION = univariate.TruncatedGaussian

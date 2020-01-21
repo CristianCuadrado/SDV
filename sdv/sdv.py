@@ -9,9 +9,6 @@ from sdv.models.copulas import GaussianCopula
 from sdv.sampler import Sampler
 
 DEFAULT_MODEL = GaussianCopula
-DEFAULT_MODEL_KWARGS = {
-    'distribution': 'copulas.univariate.gaussian.GaussianUnivariate'
-}
 
 
 class NotFittedError(Exception):
@@ -33,12 +30,9 @@ class SDV:
 
     sampler = None
 
-    def __init__(self, model=DEFAULT_MODEL, model_kwargs=None):
+    def __init__(self, model=DEFAULT_MODEL, model_kwargs=dict()):
         self.model = model
-        if model_kwargs is None:
-            self.model_kwargs = DEFAULT_MODEL_KWARGS.copy()
-        else:
-            self.model_kwargs = model_kwargs
+        self.model_kwargs = model_kwargs
 
     def _validate_dataset_structure(self):
         """Make sure that all the tables have at most one parent."""
